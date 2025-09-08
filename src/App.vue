@@ -2,7 +2,7 @@
     <el-container>
         <el-container>
             <el-aside width="200px">
-                <el-menu router default-active="/image" class="el-menu-vertical">
+                <el-menu router default-active="/chat" class="el-menu-vertical">
                     <el-menu-item index="/chat">
                         <span>chat</span>
                     </el-menu-item>
