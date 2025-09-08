@@ -17,7 +17,7 @@
                 </el-main>
                 <el-footer>
                     Made by
-                    <a href="https://x.com/bobowsk" target="_blank">bobowsk</a>
+                    <a href="https://x.com/bobowsk_bobo" target="_blank">bobowsk</a>
                 </el-footer>
             </el-container>
         </el-container>
