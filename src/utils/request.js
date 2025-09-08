@@ -25,35 +25,24 @@ axios.interceptors.response.use(
         if (error.response) {
             if (error.response.status == 404) {
                 ElNotification.error({
-                    title: '请求错误',
-                    message: 'Status:404，正在请求不存在的服务器记录！',
+                    title: 'Request error',
+                    message: 'Status: 404, requesting a server record that does not exist！',
                 });
             } else if (error.response.status == 500) {
                 ElNotification.error({
-                    title: '请求错误',
-                    message: error.response.data.message || 'Status:500，服务器发生错误！',
+                    title: 'Request error',
+                    message: error.response.data.message || 'Status: 500, server error occurred！',
                 });
-            } else if (error.response.status == 401) {
-                ElMessageBox.confirm('当前用户已被登出或无权限访问当前资源，请尝试重新登录后再操作。', '无权限访问', {
-                    type: 'error',
-                    closeOnClickModal: false,
-                    center: true,
-                    confirmButtonText: '重新登录',
-                })
-                    .then(() => {
-                        router.replace({ path: '/login' });
-                    })
-                    .catch(() => {});
             } else {
                 ElNotification.error({
-                    title: '请求错误',
-                    message: error.response.data.message || `Status:${error.response.status}，未知错误！`,
+                    title: 'Request error',
+                    message: error.response.data.message || `Status:${error.response.status}，Unknown error！`,
                 });
             }
         } else {
             ElNotification.error({
-                title: '请求错误',
-                message: '请求服务器无响应！',
+                title: 'Request error',
+                message: 'The server is not responding to the request!',
             });
         }
         return Promise.reject(error.response);
@@ -61,7 +50,7 @@ axios.interceptors.response.use(
 );
 
 var http = {
-    /** get 请求
+    /** get
      * @param  {接口地址} url
      * @param  {请求参数} params
      * @param  {参数} config
@@ -83,7 +72,7 @@ var http = {
         });
     },
 
-    /** post 请求
+    /** post
      * @param  {接口地址} url
      * @param  {请求参数} data
      * @param  {参数} config
