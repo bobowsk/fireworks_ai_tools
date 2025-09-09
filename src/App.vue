@@ -1,12 +1,14 @@
 <template>
     <el-container>
         <el-container>
-            <el-aside width="200px">
+            <el-aside width="400px">
                 <el-menu router default-active="/chat" class="el-menu-vertical">
                     <el-menu-item index="/chat">
+                        <el-icon color="#409efc"><ChatLineRound /></el-icon>
                         <span>chat</span>
                     </el-menu-item>
                     <el-menu-item index="/image">
+                        <el-icon color="#409efc"><Picture /></el-icon>
                         <span>text to image</span>
                     </el-menu-item>
                 </el-menu>
