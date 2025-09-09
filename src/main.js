@@ -10,5 +10,11 @@ const app = createApp(App)
         zIndex: 3000,
         size: 'default',
     })
-    .use(router)
-    .mount('#app');
+    .use(router);
+
+import * as ElementPlusIconsVue from '@element-plus/icons-vue';
+
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+    app.component(key, component);
+}
+app.mount('#app');
