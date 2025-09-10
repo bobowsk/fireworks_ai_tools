@@ -1,33 +1,38 @@
 <template>
     <div class="layout">
-        <div class="chat-history">
-            <div v-for="(msg, index) in msgHistory" :key="index" class="message">
-                <div v-if="msg.role === 'assistant'" class="ai-message">
-                    <span class="ai-avatar">
-                        <img src="https://mintcdn.com/fireworksai-docs/e-Z98cW52qf-SR4q/logo/logo.svg?fit=max&auto=format&n=e-Z98cW52qf-SR4q&q=85&s=b43091616e4831402298f170f209381e" width="20" />
-                    </span>
-                    <div class="app-loading__loader" v-if="isLoading && msg.role === 'assistant' && msg.content === 'Thinking...'"></div>
+        <el-card style="max-width: 480px">
+            <div class="chat-history">
+                <div v-for="(msg, index) in msgHistory" :key="index" class="message">
+                    <div v-if="msg.role === 'assistant'" class="ai-message">
+                        <span class="ai-avatar">
+                            <img src="https://mintcdn.com/fireworksai-docs/e-Z98cW52qf-SR4q/logo/logo.svg?fit=max&auto=format&n=e-Z98cW52qf-SR4q&q=85&s=b43091616e4831402298f170f209381e" width="20" />
+                        </span>
+                        <div class="app-loading__loader" v-if="isLoading && msg.role === 'assistant' && msg.content === 'Thinking...'"></div>
+                        <span class="ai-content">{{ msg.content }}</span>
 
-                    <span class="ai-content">{{ msg.content }}</span>
-                </div>
-                <div v-else-if="msg.role === 'user'" class="user-message-box">
-                    <span>{{ msg.content }}</span>
-                    <span class="user-avatar">
-                        <img src="data:image/webp;base64,UklGRjgEAABXRUJQVlA4WAoAAAAIAAAATwAATwAAVlA4IFgDAADwGQCdASpQAFAAPo04mkelIyKhLhLuQKARiWwcAA1u+B/APxu7NC+fWvyU/mfvA2r+qffXn84A82Lgn/Bfzz8c/oB/M/4B0gH98/i/+d/om8A/Q39gPeA/jH+N/gHYAf2b+V///2bP7T1gH8A/wH//9Xf9kPgq/bL0nM6L/UCZAeBXv/8YZ3n+iVqxZ6OxkH/tR/YAUkTLqIdb/o0/oh3zOqTmhTo8EkFl0+TUA9DCvuYj14Yexq3KmAu6FR/exjytitlTPgrLpwUFfNvsRpA0Rnk/om7nhAAA/sHSrNpBwIlUzwHNTnwR/h1xjBH+RdCn3XXbJUzOG7YTzvcIbbEsZ8XKcZyqTF/V6TcLJNBTX/bMiSOvaR/5B5Vw6zB5JRoDIOvzM1syceKwA0XTgeNo5PNvv/ISU6FP0kec6s0l3as284qPzKT5ocGoha2yKCICl2nA13GVH/72w3NoGgxw87uVcbm6uhPHyZn9moaLy0f/DHIl5BrIzGHg0vxlYI34F5gCilrH6a50VN88ixcQoAxF7PxOfuID1IWPvDxaPINhfFfyyoUX5qGitqdy8rnQ+oqt8Mcvt9Q7kEVBtf4PJ/gzCmgBNn/s5v+qbjBbvXr7wVoi76Ghd8CYHRtbIywNoBKEAjz2PIz6vPZVJCe/MRE4oNP40X7efl5TXuLs5lTtZZEmXBD8pUTAzKHZYQCaT3XEqVMSDC/nlGoZol2nHeFLSc6MdqCWUCbbIO0ckeyOmQUhzzBVLZzMu4ylv/cLz6FxF5h3Rn8DZD4hBVHEbw/z2vaIs8oOFvzZqV1jDScB/Z0072rwuDspxtMDyvVshNBw3NcPS/EEhzE4q9wRrXvtTqjQGD5F8m6X5ipqYUcm+zCZ5OkVpj5TLSmyso5cwNnUOATDsinNh3+4nb1KJo9dTjcmq+OO+JdCYBhyH9aL59BxyHzQw2rwzkcXOTni48vGqjOUTv6Nh7XKtl+MH7J5HG++OBDfWrAC09EJH0fc5a+GacbKLwjPpeg4pgRVs3lcuT7H305L6WuNVFSWDHCjjgAMTzNvs1llmhcrqpwcHiT3vPTjvInY+QtSHkx7n77j1JA1Hxuot6eoAMYP04MduzMfLlW0eN1FvS9GKTvbI7TDQAAARVhJRroAAABFeGlmAABJSSoACAAAAAYAEgEDAAEAAAABAAAAGgEFAAEAAABWAAAAGwEFAAEAAABeAAAAKAEDAAEAAAACAAAAEwIDAAEAAAABAAAAaYcEAAEAAABmAAAAAAAAAEgAAAABAAAASAAAAAEAAAAGAACQBwAEAAAAMDIxMAGRBwAEAAAAAQIDAACgBwAEAAAAMDEwMAGgAwABAAAA//8AAAKgBAABAAAAUAAAAAOgBAABAAAAUAAAAAAAAAA=" width="20" />
-                    </span>
+                        <!-- <span class="ai-content">{{ msg.content }}</span> -->
+                    </div>
+                    <div v-else-if="msg.role === 'user'" class="user-message-box">
+                        <span>{{ msg.content }}</span>
+                        <span class="user-avatar">
+                            <img src="data:image/webp;base64,UklGRjgEAABXRUJQVlA4WAoAAAAIAAAATwAATwAAVlA4IFgDAADwGQCdASpQAFAAPo04mkelIyKhLhLuQKARiWwcAA1u+B/APxu7NC+fWvyU/mfvA2r+qffXn84A82Lgn/Bfzz8c/oB/M/4B0gH98/i/+d/om8A/Q39gPeA/jH+N/gHYAf2b+V///2bP7T1gH8A/wH//9Xf9kPgq/bL0nM6L/UCZAeBXv/8YZ3n+iVqxZ6OxkH/tR/YAUkTLqIdb/o0/oh3zOqTmhTo8EkFl0+TUA9DCvuYj14Yexq3KmAu6FR/exjytitlTPgrLpwUFfNvsRpA0Rnk/om7nhAAA/sHSrNpBwIlUzwHNTnwR/h1xjBH+RdCn3XXbJUzOG7YTzvcIbbEsZ8XKcZyqTF/V6TcLJNBTX/bMiSOvaR/5B5Vw6zB5JRoDIOvzM1syceKwA0XTgeNo5PNvv/ISU6FP0kec6s0l3as284qPzKT5ocGoha2yKCICl2nA13GVH/72w3NoGgxw87uVcbm6uhPHyZn9moaLy0f/DHIl5BrIzGHg0vxlYI34F5gCilrH6a50VN88ixcQoAxF7PxOfuID1IWPvDxaPINhfFfyyoUX5qGitqdy8rnQ+oqt8Mcvt9Q7kEVBtf4PJ/gzCmgBNn/s5v+qbjBbvXr7wVoi76Ghd8CYHRtbIywNoBKEAjz2PIz6vPZVJCe/MRE4oNP40X7efl5TXuLs5lTtZZEmXBD8pUTAzKHZYQCaT3XEqVMSDC/nlGoZol2nHeFLSc6MdqCWUCbbIO0ckeyOmQUhzzBVLZzMu4ylv/cLz6FxF5h3Rn8DZD4hBVHEbw/z2vaIs8oOFvzZqV1jDScB/Z0072rwuDspxtMDyvVshNBw3NcPS/EEhzE4q9wRrXvtTqjQGD5F8m6X5ipqYUcm+zCZ5OkVpj5TLSmyso5cwNnUOATDsinNh3+4nb1KJo9dTjcmq+OO+JdCYBhyH9aL59BxyHzQw2rwzkcXOTni48vGqjOUTv6Nh7XKtl+MH7J5HG++OBDfWrAC09EJH0fc5a+GacbKLwjPpeg4pgRVs3lcuT7H305L6WuNVFSWDHCjjgAMTzNvs1llmhcrqpwcHiT3vPTjvInY+QtSHkx7n77j1JA1Hxuot6eoAMYP04MduzMfLlW0eN1FvS9GKTvbI7TDQAAARVhJRroAAABFeGlmAABJSSoACAAAAAYAEgEDAAEAAAABAAAAGgEFAAEAAABWAAAAGwEFAAEAAABeAAAAKAEDAAEAAAACAAAAEwIDAAEAAAABAAAAaYcEAAEAAABmAAAAAAAAAEgAAAABAAAASAAAAAEAAAAGAACQBwAEAAAAMDIxMAGRBwAEAAAAAQIDAACgBwAEAAAAMDEwMAGgAwABAAAA//8AAAKgBAABAAAAUAAAAAOgBAABAAAAUAAAAAAAAAA=" width="20" />
+                        </span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="user-input">
-            <el-input type="textarea" :rows="4" v-model="userInput" placeholder="Please enter .." class="input" @keydown.alt.enter="sendMessage" />
-            <el-button type="primary" @click="sendMessage">Send</el-button>
-        </div>
-        <div class="tip">alt+enter can quickly submit</div>
+            <div class="user-input">
+                <el-input type="textarea" :rows="4" v-model="userInput" placeholder="Please enter .." class="input" @keydown.alt.enter="sendMessage" />
+                <el-button type="primary" @click="sendMessage">Send</el-button>
+            </div>
+            <div class="tip">alt+enter can quickly submit</div>
+            <Footer />
+        </el-card>
     </div>
 </template>
 
 <script setup>
     import { ref } from 'vue';
+    import Footer from '@/components/footer.vue';
     import http from '@/utils/request';
     const isLoading = ref(false);
 
@@ -49,8 +54,24 @@
             .then((res) => {
                 msgHistory.value.pop();
                 isLoading.value = false;
-                // AI 回复
-                msgHistory.value.push(res.choices[0].message);
+                const newMessage = {
+                    role: res.choices[0].message.role,
+                    content: '',
+                    isNew: true,
+                };
+                msgHistory.value.push(newMessage);
+
+                let i = 0;
+                const typingInterval = setInterval(() => {
+                    if (i < res.choices[0].message.content.length) {
+                        newMessage.content += res.choices[0].message.content.charAt(i);
+                        i++;
+                        msgHistory.value = [...msgHistory.value];
+                    } else {
+                        clearInterval(typingInterval);
+                        newMessage.isNew = false;
+                    }
+                }, 50);
             })
             .catch((e) => {
                 msgHistory.value.pop();
@@ -77,6 +98,8 @@
 
 <style scoped lang="scss">
     .layout {
+        width: 480px;
+        margin: 0 auto;
         .chat-history {
             height: calc(100vh - 240px);
             overflow-y: auto;
@@ -134,6 +157,20 @@
                 }
                 .ai-content {
                     padding-left: 5px;
+                }
+                .ai-content.typing-effect {
+                    border-right: 2px solid #333; // 光标效果
+                    animation: blink-caret 0.75s step-end infinite;
+                }
+
+                @keyframes blink-caret {
+                    from,
+                    to {
+                        border-color: transparent;
+                    }
+                    50% {
+                        border-color: #333;
+                    }
                 }
             }
             .user-message-box {

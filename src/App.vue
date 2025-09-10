@@ -1,7 +1,7 @@
 <template>
     <el-container>
         <el-container>
-            <el-aside width="400px">
+            <el-aside width="300px">
                 <el-menu router default-active="/chat" class="el-menu-vertical">
                     <el-menu-item index="/chat">
                         <el-icon color="#409efc"><ChatLineRound /></el-icon>
@@ -17,10 +17,6 @@
                 <el-main>
                     <router-view />
                 </el-main>
-                <el-footer>
-                    Made by
-                    <a href="https://x.com/bobowsk_bobo" target="_blank">bobowsk</a>
-                </el-footer>
             </el-container>
         </el-container>
     </el-container>

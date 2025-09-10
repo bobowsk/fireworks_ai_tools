@@ -1,31 +1,37 @@
 <template>
-    <div class="image-container">
-        <div class="image-preview">
-            <img v-if="imageUrl" :src="imageUrl" width="480px" alt="Generated Image" />
-            <div v-else class="placeholder">The image will be displayed here.</div>
-        </div>
-        <div class="params-config">
-            <el-form label-width="120px" :model="sendData">
-                <el-form-item label="Prompt">
-                    <el-input v-model="sendData.prompt" type="textarea" :rows="4" placeholder="Prompt to use for the image generation process." />
-                </el-form-item>
-                <el-form-item label="aspect_ratio">
-                    <el-radio-group v-model="sendData.aspect_ratio">
-                        <el-radio :value="item" size="large" v-for="item in aspectRatio" :key="item">{{ item }}</el-radio>
-                    </el-radio-group>
-                </el-form-item>
-                <el-form-item>
-                    <el-button type="primary" @click="generateImage" :loading="isLoading">generate image</el-button>
-                    <el-button v-if="imageBlob" type="primary" @click="downloadImg">download image</el-button>
-                </el-form-item>
-            </el-form>
-        </div>
+    <div class="layout">
+        <el-card style="max-width: 480px">
+            <div class="image-container">
+                <div class="image-preview">
+                    <img v-if="imageUrl" :src="imageUrl" width="480px" alt="Generated Image" />
+                    <div v-else class="placeholder">The image will be displayed here.</div>
+                </div>
+                <div class="params-config">
+                    <el-form label-width="120px" :model="sendData">
+                        <el-form-item label="Prompt">
+                            <el-input v-model="sendData.prompt" type="textarea" :rows="4" placeholder="Prompt to use for the image generation process." />
+                        </el-form-item>
+                        <el-form-item label="aspect_ratio">
+                            <el-radio-group v-model="sendData.aspect_ratio">
+                                <el-radio :value="item" size="large" v-for="item in aspectRatio" :key="item">{{ item }}</el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="primary" @click="generateImage" :loading="isLoading">generate image</el-button>
+                            <el-button v-if="imageBlob" type="primary" @click="downloadImg">download image</el-button>
+                        </el-form-item>
+                    </el-form>
+                </div>
+            </div>
+            <Footer />
+        </el-card>
     </div>
 </template>
 
 <script setup>
     import { ref } from 'vue';
     import http from '@/utils/request';
+    import Footer from '@/components/footer.vue';
     const imageUrl = ref('');
 
     const imageBlob = ref(null);
@@ -89,28 +95,33 @@
     };
 </script>
 
-<style scoped>
-    .image-container {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
-    .image-preview {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #f5f5f5;
-        margin-bottom: 20px;
-    }
-    .image-preview img {
-        max-width: 100%;
-        max-height: 100%;
-    }
-    .placeholder {
-        color: #999;
-    }
-    .params-config {
-        padding: 20px;
+<style scoped lang="scss">
+    .layout {
+        width: 480px;
+        margin: 0 auto;
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 120px);
+        }
+        .image-preview {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f5f5f5;
+            margin-bottom: 20px;
+            height: 400px;
+        }
+        .image-preview img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .placeholder {
+            color: #999;
+        }
+        .params-config {
+            padding: 20px;
+        }
     }
 </style>
