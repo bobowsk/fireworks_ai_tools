@@ -50,11 +50,6 @@ axios.interceptors.response.use(
 );
 
 var http = {
-    /** get
-     * @param  {接口地址} url
-     * @param  {请求参数} params
-     * @param  {参数} config
-     */
     get: function (url, params = {}, config = {}) {
         return new Promise((resolve, reject) => {
             axios({
@@ -71,12 +66,6 @@ var http = {
                 });
         });
     },
-
-    /** post
-     * @param  {接口地址} url
-     * @param  {请求参数} data
-     * @param  {参数} config
-     */
     post: function (url, data = {}, config = {}) {
         return new Promise((resolve, reject) => {
             axios({
